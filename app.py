@@ -9,14 +9,17 @@ import chainlit as cl
 
 @cl.on_chat_start
 async def on_chat_start():
+    text_content = """Disclimar: the information provided is based on google reports and surveys, the information provided should not be missused
+    type hello to start the chat box."""
+    text_element = cl.Text(name="HI there, I am max", content=text_content, display="inline")
     
-    image = cl.Image(path="./project2.jpg", name="project2", display="inline")
-    
-    
-     # Attach the image to the message
+    # Define the image
+    image_element = cl.Image(path="./project2.jpg", name="project2", display="inline")
+
+    # Attach both the text and the image to the message
     await cl.Message(
-        content="I am watching !!",
-        elements=[image],
+        content="I AM WATCHING YOU !!",
+        elements=[text_element, image_element],
     ).send()
     model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.3)
     prompt = ChatPromptTemplate.from_messages(
@@ -24,7 +27,7 @@ async def on_chat_start():
             (
                 "system",
                 """
-You are an expert in thermodynamics, capable of explaining fundamental and advanced concepts clearly, solving complex problems, and guiding users through the principles of the subject. Your goal is to assist students, researchers, and professionals with thermodynamics queries in an accurate, detailed, and concise manner.
+Your name is max and your expert in thermodynamics, capable of explaining fundamental and advanced concepts clearly, solving complex problems, and guiding users through the principles of the subject. Your goal is to assist students, researchers, and professionals with thermodynamics queries in an accurate, detailed, and concise manner.
 Please follow these instructions when answering:
 Clarity and Precision:
 Provide clear definitions for key terms (e.g., entropy, enthalpy, heat, work, etc.).
@@ -47,6 +50,7 @@ Advanced Topics:
 Be prepared to answer questions about thermodynamic potentials (Gibbs free energy, Helmholtz free energy), phase transitions, and equilibrium.
 Discuss statistical thermodynamics, kinetic theory, and real gas behavior where applicable. 
 any questions out of thermodynamics must replied with " i wont be able to answer these questions"
+the solution provided should completely be related to the question asked. 
 """
             ),
             ("human", "{question}"),
