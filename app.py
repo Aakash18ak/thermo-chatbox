@@ -10,16 +10,15 @@ load_dotenv()
 
 @cl.on_chat_start
 async def on_chat_start():
-    text_content = """Disclimar: the information provided is based on google reports and surveys, the information should not be missused
-    type hello to start the chat box."""
-    text_element = cl.Text(name="Hi there, I am max", content=text_content, display="inline")
+    text_content = """ Hello! Step into the exciting realm of thermodynamics, drop your question below, and let’s get started!"""
+    text_element = cl.Text(name="Thermo chat bot ", content=text_content, display="inline")
     
     # Define the image
-    image_element = cl.Image(path="./project2.jpg", name="project2", display="inline")
+    image_element = cl.Image(path="./pictures/What.png", name="What", display="inline")
 
     # Attach both the text and the image to the message
     await cl.Message(
-        content="I AM WATCHING YOU !!",
+        content=" In This House , We obey the laws of thermodynamics ! \n by Dan castellaneta ",
         elements=[text_element, image_element],
     ).send()
     model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.3)
