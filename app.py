@@ -3,9 +3,10 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.schema import StrOutputParser
 from langchain.schema.runnable import Runnable
 from langchain.schema.runnable.config import RunnableConfig
-
+from dotenv import load_dotenv
 import chainlit as cl
 
+load_dotenv()
 
 @cl.on_chat_start
 async def on_chat_start():
